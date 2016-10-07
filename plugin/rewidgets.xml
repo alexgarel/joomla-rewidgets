@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.1" type="plugin" group="content" method="upgrade">
+	<name>plg_content_rewidget</name>
+	<author>Alex Garel</author>
+	<creationDate>October 2016</creationDate>
+	<copyright>Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.</copyright>
+	<license>GNU General Public License version 3 or later; see LICENSE.txt</license>
+	<authorUrl>http://github.com/alexgarel</authorUrl>
+	<version>0.1</version>
+	<description>PLG_REWIDGET_XML_DESCRIPTION</description>
+	<files>
+		<filename plugin="rewidgets">rewidgets.php</filename>
+		<folder>language</folder>
+	</files>
+	<languages>
+		<language tag="en-GB">en-GB.plg_content_rewidget.ini</language>
+		<language tag="en-GB">en-GB.plg_content_rewidget.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+					name="definitions"
+					type="textarea"
+					filter="raw"
+					cols="30"
+					label="PLG_REWIDGET_FIELD_DEFINITIONS_LABEL"
+					description="PLG_REWIDGET_FIELD_DEFINITIONS_DESC"
+					/>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
