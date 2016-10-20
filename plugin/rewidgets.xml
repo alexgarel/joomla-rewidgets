@@ -12,7 +12,7 @@
 		<filename plugin="rewidgets">rewidgets.php</filename>
 		<folder>language</folder>
 	</files>
-	<languages>
+	<languages folder="language">
 		<language tag="en-GB">en-GB.plg_content_rewidget.ini</language>
 		<language tag="en-GB">en-GB.plg_content_rewidget.sys.ini</language>
 	</languages>
@@ -23,7 +23,6 @@
 					name="definitions"
 					type="textarea"
 					filter="raw"
-					cols="30"
 					label="PLG_REWIDGET_FIELD_DEFINITIONS_LABEL"
 					description="PLG_REWIDGET_FIELD_DEFINITIONS_DESC"
 					/>

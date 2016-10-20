@@ -46,13 +46,15 @@ class PlgContentRewidgets extends JPlugin
 		}
 		$raw = $params->def("definitions", "");
 		foreach (explode(self::DEFS_DELIMITER, $raw) as $rawDef) {
-			list($shortCode, $template) = explode(self::PARTS_DELIMITER, $rawDef);
-			list($code, $args) = self::strDefinition($shortCode);
-			$pattern =  '/{' . $code . '\s+[^}]*}/i';
-			self::$shortCodes[$code] = array(
-			    'pattern' => $pattern,
-				'args' => $args,
-				'template' => $template);
+			if (!empty($rawDef)) {
+				list($shortCode, $template) = explode(self::PARTS_DELIMITER, $rawDef);
+				list($code, $args) = self::strDefinition($shortCode);
+				$pattern =  '/{' . $code . '\s+[^}]*}/i';
+				self::$shortCodes[$code] = array(
+					'pattern' => $pattern,
+					'args' => $args,
+					'template' => $template);
+			}
 		}
 	}
 
@@ -65,13 +67,17 @@ class PlgContentRewidgets extends JPlugin
 	{
 		$strDef = $matches[0];
 		list($code, $args) = self::strDefinition($strDef);
-		$def = self::$shortCodes[$code];
-		$args = array_merge($def["args"], $args);
-		$template = $def["template"];
-		foreach ($args as $name => $value) {
-			$template = str_replace("{".$name."}", $value, $template);
+		if (array_key_exists($code, self::$shortCodes)) {
+			$def = self::$shortCodes[$code];
+			$args = array_merge($def["args"], $args);
+			$template = $def["template"];
+			foreach ($args as $name => $value) {
+				$template = str_replace("{".$name."}", $value, $template);
+			}
+			return $template;
+		} else {
+			return $matches[0];  // unknown shortcode, no change
 		}
-		return $template; 
 	}
 
 	/**
